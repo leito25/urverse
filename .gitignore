@@ -1,0 +1,21 @@
+# UEFN / Unreal Engine folders
+Binaries/
+Build/
+DerivedDataCache/
+Intermediate/
+Saved/
+Script/
+
+# Visual Studio / IDE files
+.vs/
+*.sln
+*.suo
+*.user
+*.userprefs
+
+# Local OS files
+.DS_Store
+Thumbs.db
+
+# Project-specific lock files
+*.lock
