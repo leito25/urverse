@@ -4,14 +4,20 @@ using { /Verse.org/Simulation }
 using { /UnrealEngine.com/Temporary/Diagnostics }
 using { /UnrealEngine.com/Temporary/SpatialMath }
 
-# See https://dev.epicgames.com/documentation/en-us/uefn/create-your-own-device-in-verse for how to create a verse device.
+# See https://dev.epicgames.com/documentation/en-us/uefn/create-your-own-device-in-verse
+
+# TODO
+# The main idea is to let the enemies spawn, let the player
+# kill as much as needed enemies and once the amoun is accomplished 
+# the platfom is activated and the player could up to the goalfor how to create a verse device.
 
 # A Verse-authored creative device that can be placed in a level
 platform_mover_device := class(creative_device):
 
     #This would be the code
 
-    #getting the platform
+    #getting the platform wich is a creative prop object
+    #
     @editable
     var platform : creative_prop = creative_prop{}
 
@@ -29,4 +35,4 @@ platform_mover_device := class(creative_device):
 
         #Move the platform up by 100 units
 
-        platform.MoveTo(vector3{X:=Position.X, Y:=Position.Y, Z:=Position.Z + 5000.0}, Transform.Rotation, 10.0)
+        platform.MoveTo(vector3{X:=Position.X, Y:=Position.Y, Z:=Position.Z + 1000.0}, Transform.Rotation, 5.0)
