@@ -20,19 +20,41 @@ platform_mover_device := class(creative_device):
     #
     @editable
     var platform : creative_prop = creative_prop{}
+    
+    #This is the tracker device that will be used to track the enemies killed
+    @editable
+    var enemyTracker : tracker_device = tracker_device{}
 
 
     # This looks like python, this is a comment
     # Runs when the device is started in a running game
     OnBegin<override>()<suspends>:void=
-        # TODO: Replace this with your code
+        # Start
         Print("Hello, world!")
 
+        # TODO: TEst Moving the platform up and down
+        #Transform:= platform.GetTransform()
+        #Position:= Transform.Translation
+        #Print("Position = {Position.X}{Position.Y}{Position.Z}")
+        #Move the platform up by 100 units
+        #platform.MoveTo(vector3{X:=Position.X, Y:=Position.Y, Z:=Position.Z + 1000.0}, Transform.Rotation, 5.0)
+
+        # Here I'll got the tracker complete event and call the RaisePlatform function
+        # but using another function of type agent void, inside that function
+        # now I can call the RaisePlatform function that will move the platform up
+        enemyTracker.CompleteEvent.Subscribe(RunEvent)
+
+    RunEvent(Agent: agent): void=
+        spawn:
+            RaisePlatform()
+
+    #Suspends allows to wait for an event to run this code
+    # In this case the use of MoveTo needs the suspends to work.
+    RaisePlatform() <suspends>: void =
         Transform:= platform.GetTransform()
         Position:= Transform.Translation
 
         Print("Position = {Position.X}{Position.Y}{Position.Z}")
-
-        #Move the platform up by 100 units
-
-        platform.MoveTo(vector3{X:=Position.X, Y:=Position.Y, Z:=Position.Z + 1000.0}, Transform.Rotation, 5.0)
+        
+        #Move the platform up by 3000 units
+        platform.MoveTo(vector3{X:=Position.X, Y:=Position.Y, Z:=Position.Z + 4000.0}, Transform.Rotation, 20.0)
